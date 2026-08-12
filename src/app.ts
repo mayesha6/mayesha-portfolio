@@ -13,9 +13,29 @@ const app = express();
 app.use(compression()); 
 app.use(cookieParser());
 app.use(express.json()); 
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "https://personal-portfolio-six-sigma-40.vercel.app",
+];
+if (process.env.CORS_ORIGIN) {
+  const customOrigins = process.env.CORS_ORIGIN.split(",").map((item) => item.trim());
+  customOrigins.forEach((origin) => {
+    if (origin && !allowedOrigins.includes(origin)) {
+      allowedOrigins.push(origin);
+    }
+  });
+}
+
 app.use(
   cors({
-    origin: "https://personal-portfolio-six-sigma-40.vercel.app",
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin) || allowedOrigins.includes("*")) {
+        callback(null, true);
+      } else {
+        callback(new Error(`Origin ${origin} not allowed by CORS`));
+      }
+    },
     credentials: true,
   })
 );
@@ -39,6 +59,14 @@ app.use((req, res, next) => {
   res.status(404).json({
     success: false,
     message: "Route Not Found",
+  });
+});
+
+app.use((err: any, req: any, res: any, next: any) => {
+  console.error("Unhandled Error:", err);
+  res.status(err.status || 500).json({
+    success: false,
+    message: err.message || "Internal Server Error",
   });
 });
 
