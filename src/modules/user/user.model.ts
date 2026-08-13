@@ -9,6 +9,8 @@ export interface IUser {
   picture?: string;
   status: 'ACTIVE' | 'INACTIVE' | 'BLOCK';
   isVerified: boolean;
+  resetPasswordToken?: string;
+  resetPasswordExpires?: Date;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -23,6 +25,8 @@ const UserSchema = new Schema<IUser>(
     picture: { type: String },
     status: { type: String, enum: ['ACTIVE', 'INACTIVE', 'BLOCK'], default: 'ACTIVE' },
     isVerified: { type: Boolean, default: false },
+    resetPasswordToken: { type: String },
+    resetPasswordExpires: { type: Date },
   },
   {
     timestamps: true,

@@ -1,0 +1,640 @@
+{
+	"info": {
+		"_postman_id": "c33b7083-d9d3-468e-a9ff-523fe74de8ee",
+		"name": "Mayesha's Portfolio API Collection",
+		"description": "Postman testing collection for Mayesha's Portfolio Backend Mongoose API endpoints. Includes User, Auth, Project, and Post routes.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login with Email & Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"mayesha@example.com\",\n  \"password\": \"password123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						},
+						"description": "Log in with email and password. Returns the authenticated user details."
+					},
+					"response": []
+				},
+				{
+					"name": "Google Login Route",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/google",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"google"
+							]
+						},
+						"description": "Triggers google authentication routing."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user"
+							]
+						},
+						"description": "Retrieve all users from the database."
+					},
+					"response": []
+				},
+				{
+					"name": "Get User By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/user/{{userId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"{{userId}}"
+							]
+						},
+						"description": "Fetch a specific user by their MongoDB ObjectId."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Posts By User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/user/{{userId}}/posts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"{{userId}}",
+								"posts"
+							]
+						},
+						"description": "Fetch all blog posts written by a specific user."
+					},
+					"response": []
+				},
+				{
+					"name": "Create New User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Jane Smith\",\n  \"email\": \"jane.smith@example.com\",\n  \"password\": \"password123\",\n  \"role\": \"USER\",\n  \"phone\": \"+8801555555555\",\n  \"picture\": \"https://images.unsplash.com/photo-1544005313-94ddf0286df2\",\n  \"status\": \"ACTIVE\",\n  \"isVerified\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user"
+							]
+						},
+						"description": "Create a new user entry in the database."
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Mayesha Tasnim (Updated)\",\n  \"phone\": \"+8801711111111\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/user/{{userId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"{{userId}}"
+							]
+						},
+						"description": "Modify details of an existing user."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/user/{{userId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"{{userId}}"
+							]
+						},
+						"description": "Remove a user entry from the database."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "Get All Projects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/project?page=1&limit=10&search=&techStack=Next.js,React&sortedBy=createdAt&sortedOrder=desc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"project"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number (defaults to 1)"
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "Items per page (defaults to 10)"
+								},
+								{
+									"key": "search",
+									"value": "",
+									"description": "Search keyword for title/content"
+								},
+								{
+									"key": "techStack",
+									"value": "Next.js,React",
+									"description": "Comma-separated list of technologies"
+								},
+								{
+									"key": "sortedBy",
+									"value": "createdAt",
+									"description": "Sort field (e.g. views, createdAt)"
+								},
+								{
+									"key": "sortedOrder",
+									"value": "desc",
+									"description": "Sort order (asc/desc)"
+								}
+							]
+						},
+						"description": "Retrieve projects with optional pagination, search filtering, tag filters, and sorting."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Project By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/project/{{projectId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"project",
+								"{{projectId}}"
+							]
+						},
+						"description": "Fetch a specific project by its ID and increment its view count."
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Project",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Cool Mobile Application\",\n  \"content\": \"A feature-packed mobile application built using Flutter for frontend design and Firebase for databases.\",\n  \"thumbnail\": \"https://images.unsplash.com/photo-1551288049-bebda4e38f71\",\n  \"livelink\": \"https://cool-app-demo.vercel.app\",\n  \"repolink\": \"https://github.com/mayesha/cool-app\",\n  \"techStack\": [\"Flutter\", \"Firebase\", \"Dart\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/project",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"project"
+							]
+						},
+						"description": "Create a new project entry."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Project",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"E-Commerce Web Application (Updated)\",\n  \"content\": \"This is an updated content describing the amazing e-commerce platform.\",\n  \"techStack\": [\"Next.js\", \"React\", \"Node.js\", \"MongoDB\", \"Express\", \"Stripe\", \"Redux\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/project/{{projectId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"project",
+								"{{projectId}}"
+							]
+						},
+						"description": "Modify details of an existing project."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Project By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/project/{{projectId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"project",
+								"{{projectId}}"
+							]
+						},
+						"description": "Delete a project entry."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts (Blogs)",
+			"item": [
+				{
+					"name": "Get All Posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/post?page=1&limit=10&search=&isFeatured=true&tags=React&sortedBy=views&sortedOrder=desc",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"post"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number (defaults to 1)"
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "Posts per page (defaults to 10)"
+								},
+								{
+									"key": "search",
+									"value": "",
+									"description": "Search keyword for title/content"
+								},
+								{
+									"key": "isFeatured",
+									"value": "true",
+									"description": "Filter by featured status"
+								},
+								{
+									"key": "tags",
+									"value": "React",
+									"description": "Filter by tags (comma-separated)"
+								},
+								{
+									"key": "sortedBy",
+									"value": "views",
+									"description": "Sort field (e.g. views, createdAt)"
+								},
+								{
+									"key": "sortedOrder",
+									"value": "desc",
+									"description": "Sort order (asc/desc)"
+								}
+							]
+						},
+						"description": "Retrieve posts with optional pagination, search filtering, tag filters, and sorting."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Blog Statistics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/post/stats",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"stats"
+							]
+						},
+						"description": "Get blog summary statistics, including total views, average views, total posts, featured count, top featured post, and last week's post counts."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Post By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/post/{{postId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"{{postId}}"
+							]
+						},
+						"description": "Fetch a specific blog post by its ID and increment its view count."
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Understanding JavaScript Closures\",\n  \"content\": \"A closure is the combination of a function bundled together with references to its surrounding state (the lexical environment). In JavaScript, closures are created every time a function is created, at function creation time.\",\n  \"thumbnail\": \"https://images.unsplash.com/photo-1507721999472-8ed4421c4b2e\",\n  \"isFeatured\": false,\n  \"tags\": [\"JavaScript\", \"Programming\"],\n  \"authorId\": \"{{userId}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/post",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"post"
+							]
+						},
+						"description": "Create a new blog post. Note: authorId field must map to an existing User ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Post",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Mastering Next.js Server Components (Updated)\",\n  \"tags\": [\"Next.js\", \"React\", \"Web Dev\", \"Server Components\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/post/{{postId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"{{postId}}"
+							]
+						},
+						"description": "Modify details of an existing blog post."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Post By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/post/{{postId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"{{postId}}"
+							]
+						},
+						"description": "Delete a blog post from the database."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:5000",
+			"type": "string"
+		},
+		{
+			"key": "userId",
+			"value": "6a7d5507439156ad69cbd5e4",
+			"type": "string"
+		},
+		{
+			"key": "projectId",
+			"value": "6a7d5508439156ad69cbd5e7",
+			"type": "string"
+		},
+		{
+			"key": "postId",
+			"value": "6a7d5508439156ad69cbd5eb",
+			"type": "string"
+		}
+	]
+}

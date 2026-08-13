@@ -6,6 +6,7 @@ import { postRouter } from "./modules/post/post.routes";
 import { authRouter } from "./modules/auth/auth.routes";
 import cookieParser from "cookie-parser";
 import { projectRouter } from "./modules/project/project.routes";
+import { contactRouter } from "./modules/contact/contact.routes";
 
 
 const app = express();
@@ -48,12 +49,12 @@ app.use("/api/v1/user", userRouter)
 app.use("/api/v1/post", postRouter)
 app.use("/api/v1/auth", authRouter)
 app.use("/api/v1/project", projectRouter)
+app.use("/api/v1/contact", contactRouter)
 
 
 app.get("/", (_req, res) => {
   res.send("My portfolio API is running...");
 });
-
 
 app.use((req, res, next) => {
   res.status(404).json({
