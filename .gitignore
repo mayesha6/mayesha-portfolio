@@ -1,5 +1,4 @@
 node_modules
-.env
 dist
 build
 .log
@@ -9,4 +8,4 @@ build
 .vercel
 
 .vercel
-.env*
+config.bat
