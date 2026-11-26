@@ -67,16 +67,26 @@ const getProjectById = async (
   try {
     const id = req.params.id;
     const result = await ProjectServices.getProjectById(id);
+    if (!result) {
+      return res.status(404).json({
+        success: false,
+        message: "Project not found",
+      });
+    }
     res.status(200).json({
       success: true,
       data: result,
       message: "Project retrieve successfully",
     });
-  } catch (err) {
+  } catch (err: any) {
     console.log(err);
-    res.status(500).json({
+    const statusCode = err?.name === "CastError" ? 400 : 500;
+    res.status(statusCode).json({
       success: false,
-      message: "Failed to retrieve project",
+      message:
+        err?.name === "CastError"
+          ? "Invalid project ID"
+          : "Failed to retrieve project",
       error: err instanceof Error ? err.message : err,
     });
   }

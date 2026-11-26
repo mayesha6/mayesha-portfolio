@@ -7,6 +7,7 @@ import { authRouter } from "./modules/auth/auth.routes";
 import cookieParser from "cookie-parser";
 import { projectRouter } from "./modules/project/project.routes";
 import { contactRouter } from "./modules/contact/contact.routes";
+import { uploadRouter } from "./modules/upload/upload.routes";
 
 
 const app = express();
@@ -51,6 +52,7 @@ app.use("/api/v1/post", postRouter)
 app.use("/api/v1/auth", authRouter)
 app.use("/api/v1/project", projectRouter)
 app.use("/api/v1/contact", contactRouter)
+app.use("/api/v1/upload", uploadRouter)
 
 
 app.get("/", (_req, res) => {
