@@ -11,13 +11,14 @@ import { contactRouter } from "./modules/contact/contact.routes";
 
 const app = express();
 
-app.use(compression()); 
+app.use(compression());
 app.use(cookieParser());
-app.use(express.json()); 
+app.use(express.json());
 const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:3001",
   "https://personal-portfolio-six-sigma-40.vercel.app",
+  "https://mayesha6.vercel.app"
 ];
 if (process.env.CORS_ORIGIN) {
   const customOrigins = process.env.CORS_ORIGIN.split(",").map((item) => item.trim());
